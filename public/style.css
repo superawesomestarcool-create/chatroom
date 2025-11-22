@@ -1,0 +1,56 @@
+body {
+        background-color: #ff00ff;    /* aggressive neon magenta */
+        color: #00ff00;               /* painful green text */
+        font-family: "Comic Sans MS", "Papyrus", "Curlz MT", fantasy; /* horror */
+        padding: 20px;
+    }
+
+    h1 {
+        color: #00ffff;               /* neon cyan clash */
+        text-shadow: 2px 2px #ff0000; /* useless and ugly */
+        letter-spacing: 4px;
+    }
+
+    #messages {
+        background-color: #ffff00;    /* highlighter yellow */
+        border: 5px dotted #0000ff;   /* ugly blue border */
+        height: 300px;
+        padding: 10px;
+        overflow-y: scroll;
+        margin-bottom: 20px;
+    }
+
+    .message {
+        padding: 5px 0;
+        color: #ff0000;               /* red text */
+        background-color: #00ff00;    /* green block */
+        border-bottom: 3px dashed #ff00ff;
+        font-size: 20px;
+        font-style: italic;
+    }
+
+    input {
+        padding: 10px;
+        width: 250px;
+        border: 3px solid #0000ff;
+        background-color: #00ff00;
+        color: #ff0000;
+        font-family: "Comic Sans MS";
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #ff0000;
+        border: 4px groove #ffff00;
+        color: #00ffff;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+        transform: rotate(-5deg);  /* crooked button for maximum badness */
+    }
+
+    button:hover {
+        background-color: #00ff00;
+        color: #ff00ff;
+        border: 4px ridge #0000ff;
+    }
