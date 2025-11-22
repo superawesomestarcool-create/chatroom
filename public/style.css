@@ -1,56 +1,125 @@
+/* Overall page */
 body {
-        background-color: #ff00ff;    /* aggressive neon magenta */
-        color: #00ff00;               /* painful green text */
-        font-family: "Comic Sans MS", "Papyrus", "Curlz MT", fantasy; /* horror */
-        padding: 20px;
-    }
+    margin: 0;
+    padding: 0;
+    font-family: "Georgia", "Times New Roman", serif;
+    background: radial-gradient(circle at top left, #3b3a40, #141218 60%, #07060a);
+    color: #f5e9d7;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
 
-    h1 {
-        color: #00ffff;               /* neon cyan clash */
-        text-shadow: 2px 2px #ff0000; /* useless and ugly */
-        letter-spacing: 4px;
-    }
+/* Centered card */
+.chat-container {
+    margin-top: 60px;
+    width: 420px;
+    background: rgba(15, 10, 22, 0.95);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 128, 0.45);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8);
+    padding: 20px 22px 18px 22px;
+}
 
-    #messages {
-        background-color: #ffff00;    /* highlighter yellow */
-        border: 5px dotted #0000ff;   /* ugly blue border */
-        height: 300px;
-        padding: 10px;
-        overflow-y: scroll;
-        margin-bottom: 20px;
-    }
+/* Header */
+h1 {
+    margin: 0 0 8px 0;
+    font-size: 26px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #f7d77f;
+}
 
-    .message {
-        padding: 5px 0;
-        color: #ff0000;               /* red text */
-        background-color: #00ff00;    /* green block */
-        border-bottom: 3px dashed #ff00ff;
-        font-size: 20px;
-        font-style: italic;
-    }
+.subtitle {
+    font-size: 12px;
+    color: #b8a58a;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
 
-    input {
-        padding: 10px;
-        width: 250px;
-        border: 3px solid #0000ff;
-        background-color: #00ff00;
-        color: #ff0000;
-        font-family: "Comic Sans MS";
-    }
+/* Messages area */
+#messages {
+    background: radial-gradient(circle at top, #251c30, #140d1c);
+    border-radius: 10px;
+    border: 1px solid rgba(248, 210, 125, 0.25);
+    height: 260px;
+    padding: 10px 12px;
+    overflow-y: auto;
+    margin-bottom: 14px;
+}
 
-    button {
-        padding: 10px 20px;
-        background-color: #ff0000;
-        border: 4px groove #ffff00;
-        color: #00ffff;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 18px;
-        transform: rotate(-5deg);  /* crooked button for maximum badness */
-    }
+/* Individual message */
+.message {
+    margin-bottom: 6px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: rgba(8, 5, 15, 0.9);
+    border-left: 3px solid rgba(248, 210, 125, 0.7);
+    font-size: 14px;
+}
 
-    button:hover {
-        background-color: #00ff00;
-        color: #ff00ff;
-        border: 4px ridge #0000ff;
-    }
+/* Input row */
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Text input */
+#messageInput {
+    flex: 1;
+    padding: 9px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 221, 158, 0.35);
+    background: rgba(15, 10, 22, 0.9);
+    color: #f5e9d7;
+    font-size: 14px;
+    outline: none;
+}
+
+#messageInput::placeholder {
+    color: #7d6d5a;
+}
+
+/* Send button */
+button {
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #f7d77f, #e3a74d);
+    color: #2a1a0d;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+}
+
+button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.8);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.7);
+}
+
+/* Scrollbar styling */
+#messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background: rgba(248, 210, 125, 0.5);
+    border-radius: 999px;
+}
