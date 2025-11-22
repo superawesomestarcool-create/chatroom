@@ -19,7 +19,7 @@
     const messagesDiv = document.getElementById("messages");
     const input = document.getElementById("messageInput");
 
-    // === NEW: render history when we first connect ===
+    // === Render chat history on load ===
     socket.on("chatHistory", (messages) => {
         messagesDiv.innerHTML = ""; // clear existing
         messages.forEach((msg) => {
@@ -27,7 +27,7 @@
         });
     });
 
-    // Live new messages
+    // Live messages
     socket.on("chatMessage", (msg) => {
         addMessage(msg);
     });
@@ -36,7 +36,7 @@
         const div = document.createElement("div");
         div.textContent = msg;
         messagesDiv.appendChild(div);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight; // scroll to bottom
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
     function sendMessage() {
@@ -46,8 +46,15 @@
             input.value = "";
         }
     }
-</script>
 
+    // === NEW: Send when pressing Enter ===
+    input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+    
     </script>
 </body>
 </html>
