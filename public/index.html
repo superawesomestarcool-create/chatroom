@@ -13,24 +13,40 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        const socket = io();
+    const socket = io();
 
-        const messagesDiv = document.getElementById("messages");
-        const input = document.getElementById("messageInput");
+    const messagesDiv = document.getElementById("messages");
+    const input = document.getElementById("messageInput");
 
-        socket.on("chatMessage", (msg) => {
-            const div = document.createElement("div");
-            div.textContent = msg;
-            messagesDiv.appendChild(div);
+    // === NEW: render history when we first connect ===
+    socket.on("chatHistory", (messages) => {
+        messagesDiv.innerHTML = ""; // clear existing
+        messages.forEach((msg) => {
+            addMessage(msg);
         });
+    });
 
-        function sendMessage() {
-            const value = input.value;
-            if (value !== "") {
-                socket.emit("chatMessage", value);
-                input.value = "";
-            }
+    // Live new messages
+    socket.on("chatMessage", (msg) => {
+        addMessage(msg);
+    });
+
+    function addMessage(msg) {
+        const div = document.createElement("div");
+        div.textContent = msg;
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // scroll to bottom
+    }
+
+    function sendMessage() {
+        const value = input.value.trim();
+        if (value !== "") {
+            socket.emit("chatMessage", value);
+            input.value = "";
         }
+    }
+</script>
+
     </script>
 </body>
 </html>
