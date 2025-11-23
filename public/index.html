@@ -19,6 +19,17 @@
     const messagesDiv = document.getElementById("messages");
     const input = document.getElementById("messageInput");
 
+    // === Username handling ===
+    let username = localStorage.getItem("chatUsername");
+
+    if (!username) {
+        username = prompt("Enter a username:");
+        if (!username || username.trim() === "") {
+            username = "Anonymous";
+        }
+        localStorage.setItem("chatUsername", username);
+    }
+
     // === Render chat history on load ===
     socket.on("chatHistory", (messages) => {
         messagesDiv.innerHTML = ""; // clear existing
@@ -34,7 +45,18 @@
 
     function addMessage(msg) {
         const div = document.createElement("div");
-        div.textContent = msg;
+
+        // Support both old string messages and new { username, text } objects
+        if (typeof msg === "string") {
+            div.textContent = msg;
+        } else if (msg && typeof msg === "object") {
+            const name = msg.username || "Anonymous";
+            const text = msg.text || "";
+            div.textContent = name + ": " + text;
+        } else {
+            div.textContent = String(msg);
+        }
+
         messagesDiv.appendChild(div);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
@@ -42,19 +64,22 @@
     function sendMessage() {
         const value = input.value.trim();
         if (value !== "") {
-            socket.emit("chatMessage", value);
+            socket.emit("chatMessage", {
+                username: username,
+                text: value
+            });
             input.value = "";
         }
     }
 
-    // === NEW: Send when pressing Enter ===
+    // === Send when pressing Enter ===
     input.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
             event.preventDefault();
             sendMessage();
         }
     });
-    
+
     </script>
 </body>
 </html>
